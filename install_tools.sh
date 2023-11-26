@@ -7,7 +7,7 @@ echo "      Powered by Radhitee               "
 echo "----------------------------------------"
 
 echo "# Install gnupg"
-sudo apt update
+sudo apt update && apt upgrade -y
 sudo apt install gnupg -y
 
 echo "# Add Kali Linux repository key"
