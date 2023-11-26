@@ -9,7 +9,7 @@ echo "----------------------------------------"
 echo "# Creating virtual env for python"
 sudo apt install python3.11-venv
 python3 -m venv /usr/local/venv
-echo 'export PATH=$PATH:$HOME/usr/local/venv/bin' >> ~/.bashrc
+echo 'export PATH=/usr/local/venv/bin:$PATH' >> ~/.bashrc
 source ~/.bashrc
 
 #export PATH="/usr/local/venv/bin:$PATH"
