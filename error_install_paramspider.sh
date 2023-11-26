@@ -9,8 +9,11 @@ echo "----------------------------------------"
 echo "# Creating virtual env for python"
 sudo apt install python3.11-venv
 python3 -m venv /usr/local/venv
-export PATH="/usr/local/venv/bin:$PATH"
-echo $0
+echo 'export PATH=$PATH:$HOME/usr/local/venv/bin' >> ~/.bashrc
+source ~/.bashrc
+
+#export PATH="/usr/local/venv/bin:$PATH"
+#echo $0
 
 echo "# Install ParamSpider"
 #git clone https://github.com/devanshbatham/paramspider
