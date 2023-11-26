@@ -17,8 +17,8 @@ curl -sSL https://get.rvm.io | bash -s stable
 source /etc/profile.d/rvm.sh
 rvm autolibs disable
 rvm requirements
-rvm install 3.0.3
-rvm use 3.0.3 --default
+rvm install 3.0.5
+rvm use 3.0.5 --default
 gem install bundler
 
 # Clone Metasploit repository
