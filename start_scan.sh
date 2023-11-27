@@ -22,16 +22,19 @@ if [ "$need_param" == "y" ]; then
 fi
 
 # Menjalankan Subfinder untuk mendapatkan subdomain
-#subfinder -d "$domain_name" -o subdomains.txt
+echo "Running subfinder..."
+subfinder -d "$domain_name" -o subdomains.txt
 
+echo "Running http-toolkit..."
 # Menjalankan httpx-toolkit untuk mengecek subdomain yang aktif
-#httpx-toolkit -l subdomains.txt -o active_domains.txt
+httpx-toolkit -l subdomains.txt -o active_domains.txt
 
 # Menjalankan Nuclei untuk melakukan scanning
+echo "Running nuclei..."
 if [ "$need_param" == "y" ]; then
-    #nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
-    subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei "$nuclei_param" -o nuclei_report.txt
+    nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
+    #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei "$nuclei_param" -o nuclei_report.txt
 else
-    #nuclei -l active_domains.txt -o nuclei_report.txt
-    subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
+    nuclei -l active_domains.txt -o nuclei_report.txt
+    #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
 fi
