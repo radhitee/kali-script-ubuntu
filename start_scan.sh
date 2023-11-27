@@ -30,7 +30,7 @@ fi
 # Menjalankan Nuclei untuk melakukan scanning
 if [ "$need_param" == "y" ]; then
     #nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
-    subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt "$nuclei_param"
+    subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei "$nuclei_param" -o nuclei_report.txt
 else
     #nuclei -l active_domains.txt -o nuclei_report.txt
     subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
