@@ -1,5 +1,6 @@
 #!/bin/bash
 
+echo "---------------------------"
 echo "Password Brute Force Script"
 echo "      By Radhitee          "
 echo "---------------------------"
