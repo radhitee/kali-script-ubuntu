@@ -22,10 +22,20 @@ fi
 echo "Running subfinder..."
 subfinder -d "$domain_name" -o subdomains.txt
 
-echo "Running http-toolkit..."
+echo "Running httpx-toolkit..."
 # Menjalankan httpx-toolkit untuk mengecek subdomain yang aktif
 httpx-toolkit -l subdomains.txt -o active_domains.txt
 
+echo "Scanning domain completed!"
+echo "--------------------------"
+# Menampilkan jumlah domain aktif dan tidak aktif
+total_active_domains=$(wc -l < active_domains.txt)
+total_subdomains=$(wc -l < subdomains.txt)
+total_inactive_domains=$((total_subdomains - total_active_domains))
+
+echo "Total Active Domains: $total_active_domains"
+echo "Total Inactive Domains: $total_inactive_domains"
+echo "----------------------------------------------"
 # Menanyakan apakah pengguna ingin menjalankan Nuclei
 read -p "Do you want to run Nuclei? (y/n): " run_nuclei
 
