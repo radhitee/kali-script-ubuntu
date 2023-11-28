@@ -47,7 +47,7 @@ if [ "$run_nuclei" == "y" ]; then
     read -p "Input your nuclei param (you can leave empty): " nuclei_param
     echo ""
     echo "Running nuclei..."
-    nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
+    nuclei -l active_domains.txt -o nuclei_report.txt $nuclei_param
     echo ""
     echo "Nuclei scan completed!"
     #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
