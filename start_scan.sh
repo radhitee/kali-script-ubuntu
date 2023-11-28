@@ -19,13 +19,16 @@ if [ "$need_param" == "y" ]; then
 fi
 
 # Menjalankan Subfinder untuk mendapatkan subdomain
+echo ""
 echo "Running subfinder..."
 subfinder -d "$domain_name" -o subdomains.txt
 
+echo ""
 echo "Running httpx-toolkit..."
 # Menjalankan httpx-toolkit untuk mengecek subdomain yang aktif
 httpx-toolkit -l subdomains.txt -o active_domains.txt
 
+echo ""
 echo "Scanning domain completed!"
 echo "--------------------------"
 # Menampilkan jumlah domain aktif dan tidak aktif
@@ -33,25 +36,20 @@ total_active_domains=$(wc -l < active_domains.txt)
 total_subdomains=$(wc -l < subdomains.txt)
 total_inactive_domains=$((total_subdomains - total_active_domains))
 
+echo ""
 echo "Total Active Domains: $total_active_domains"
 echo "Total Inactive Domains: $total_inactive_domains"
 echo "----------------------------------------------"
 # Menanyakan apakah pengguna ingin menjalankan Nuclei
 read -p "Do you want to run Nuclei? (y/n): " run_nuclei
 
-if [ "$run_nuclei" == "y" ]; then
+if [ "$run_nuclei" == "y" ]; then    
+    read -p "Input your nuclei param (you can leave empty): " nuclei_param
+    echo ""
     echo "Running nuclei..."
-    
-    # Menanyakan apakah perlu parameter untuk Nuclei
-    read -p "Need parameter for nuclei? (y/n): " need_param
-    
-    if [ "$need_param" == "y" ]; then
-        nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
-        #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei "$nuclei_param" -o nuclei_report.txt
-    else
-        nuclei -l active_domains.txt -o nuclei_report.txt
-        #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
-    fi
+    nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
+    echo ""
+    echo "Nuclei scan completed!"
 else
     echo "Skipping Nuclei."
 fi
