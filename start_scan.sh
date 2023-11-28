@@ -50,6 +50,7 @@ if [ "$run_nuclei" == "y" ]; then
     nuclei -l active_domains.txt -o nuclei_report.txt "$nuclei_param"
     echo ""
     echo "Nuclei scan completed!"
+    #subfinder -d "$domain_name" -o subdomains.txt | httpx-toolkit -o active_domains.txt | nuclei -o nuclei_report.txt
 else
     echo "Skipping Nuclei."
 fi
