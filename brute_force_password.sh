@@ -46,4 +46,4 @@ for ((i=1; i<=num_attempts; i++)); do
     echo "Attempt $i | Password : $random_text | Response Length : $response_length"  >> "$output_file"
 done
 
-echo "Brute force completed with $i tries . Results saved in $output_file"
+echo "Brute force completed with $((i-1)) tries . Results saved in $output_file"
