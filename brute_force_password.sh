@@ -21,8 +21,9 @@ else
 fi
 
 read -p "Enter the username: " username
-read -p "Enter the length of text: " length_text
-read -p "Enter the pattern text : " pattern_text
+read -p "Enter the minimum length of text: " min_length_text
+read -p "Enter the maximum length of text: " max_length_text
+read -p "Enter the pattern text: " pattern_text
 read -p "Enter the number of attempts: " num_attempts
 
 output_file="password_checker.txt"
@@ -35,6 +36,7 @@ echo "Data : $username_param=$username&$password_param="
 echo "------------------------"
 
 for ((i=1; i<=num_attempts; i++)); do
+    length_text=$(( min_length_text + RANDOM % (max_length_text - min_length_text + 1) ))
     random_text=$(head /dev/urandom | LC_ALL=C tr -dc "$pattern_text" | head -c"$length_text")
     data="$username_param=$username&$password_param=$random_text"
     
