@@ -37,6 +37,7 @@ total_subdomains=$(wc -l < subdomains.txt)
 total_inactive_domains=$((total_subdomains - total_active_domains))
 
 echo ""
+echo "----------------------------------------------"
 echo "Total Scan Domains: $total_subdomains"
 echo "Total Active Domains: $total_active_domains"
 echo "Total Inactive Domains: $total_inactive_domains"
