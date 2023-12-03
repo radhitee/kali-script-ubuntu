@@ -14,7 +14,7 @@ echo "# Add Kali Linux repository key"
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys ED444FF07D8D0BF6
 
 echo "# Add Kali Linux repository to sources.list"
-echo "deb http://http.kali.org/kali kali-rolling main non-free contrib" | sudo tee /etc/apt/sources.list.d/kali.list
+echo "deb https://mirrors.ocf.berkeley.edu/kali/ kali-rolling main contrib non-free" | sudo tee /etc/apt/sources.list.d/kali.list
 
 echo "# Install required packages"
 sudo apt update && apt upgrade -y
